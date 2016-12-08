@@ -11,7 +11,7 @@ public abstract class GameUtils implements GameModel  {
      * @param tile
      */
     public void setGameboardState(Position pos, GameTile tile) {
-
+        int a = 2*2;
     }
 
     /**
