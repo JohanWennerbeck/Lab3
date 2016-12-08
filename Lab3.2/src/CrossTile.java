@@ -12,7 +12,7 @@ public class CrossTile extends GameTile {
 
 	/**
 	 * Creates a diagonal cross game tile.
-	 * 
+	 * foo bar
 	 * @param color
 	 *            the color of the cross.
 	 */
