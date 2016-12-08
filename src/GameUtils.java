@@ -4,7 +4,7 @@ import java.awt.*;
  * Created by johan on 2016-12-08.
  */
 
-// Test commit
+
 public abstract class GameUtils implements GameModel  {
     /**
      * Set the tile on a specified position in the gameboard.
@@ -12,6 +12,7 @@ public abstract class GameUtils implements GameModel  {
      * @param pos  The position in the gameboard matrix.
      * @param tile
      */
+
     public void setGameboardState(Position pos, GameTile tile) {
 
     }
