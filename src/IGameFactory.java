@@ -2,7 +2,6 @@
  * Factory interface for available games.
  */
 
-//YOYOY my niggahs
 public interface IGameFactory {
 	/**
 	 * Returns an array with names of games this factory can create. Used by GUI
