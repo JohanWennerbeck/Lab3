@@ -7,7 +7,7 @@ import java.awt.Graphics;
  * Whenever the object should paint itself, it is told what size and position
  * that should be used to paint it.
  */
-public class GameTile {
+public interface GameTile {
 
 	/**
 	 * Draws itself in a given graphics context, position and size.
@@ -21,8 +21,7 @@ public class GameTile {
 	 * @param d
 	 *            size of this object in pixels.
 	 */
-	public void draw(Graphics g, int x, int y, Dimension d) {
+	public void draw(Graphics g, int x, int y, Dimension d);
 		// The default GameTile is transparent,
 		// therefore no drawing is performed.
-	}
 }

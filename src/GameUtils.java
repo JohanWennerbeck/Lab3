@@ -24,8 +24,7 @@ public abstract class GameUtils implements GameModel  {
      * @param y    Coordinate in the gameboard matrix.
      * @param tile
      */
-    public void setGameboardState(int x, int y, GameTile tile) {
-
+    public void setGameboardState(int x, int y, GameTile[][] tile) {
     }
 
     /**
@@ -34,7 +33,7 @@ public abstract class GameUtils implements GameModel  {
      * @param pos The position in the gameboard matrix.
      */
     @Override
-    public GameTile getGameboardState(Position pos) {
+    public GameTile[][] getGameboardState(Position pos) {
         return null;
     }
 
