@@ -95,6 +95,8 @@ public class GoldModel extends GameUtils {
 	/** The number of coins found. */
 	private int score;
 
+	private GameTile[][] board;
+
 	/**
 	 * Create a new model for the gold game.
 	 */
