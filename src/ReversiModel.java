@@ -114,16 +114,12 @@ public class ReversiModel extends GameUtils {
 		int midY = this.height / 2 - 1;
 		this.board[midX][midY] = PieceColor.WHITE;
 		gameboardState[midX][midY] = whiteGridTile;
-		//setGameboardState(midX, midY, whiteGridTile);
 		this.board[midX + 1][midY + 1] = PieceColor.WHITE;
 		gameboardState[midX+1][midY+1] = whiteGridTile;
-		//setGameboardState(midX + 1, midY + 1, whiteGridTile);
 		this.board[midX + 1][midY] = PieceColor.BLACK;
 		gameboardState[midX+1][midY] = blackGridTile;
-		//setGameboardState(midX + 1, midY, blackGridTile);
 		this.board[midX][midY + 1] = PieceColor.BLACK;
 		gameboardState[midX][midY+1] = blackGridTile;
-		//setGameboardState(midX, midY + 1, blackGridTile);
 
 		// Set the initial score.
 		this.whiteScore = 2;
@@ -184,7 +180,6 @@ public class ReversiModel extends GameUtils {
 			if (canTurn(this.turn, this.cursorPos)) {
 				turnOver(this.turn, this.cursorPos);
 				gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = t;
-				//setGameboardState(this.cursorPos, t);
 				this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
 						(this.turn == Turn.BLACK
 								? PieceColor.BLACK
@@ -235,9 +230,6 @@ public class ReversiModel extends GameUtils {
 							this.board[x][y] = myColor;
 							gameboardState[x][y] = (myColor == PieceColor.BLACK ? blackGridTile
 									: whiteGridTile);
-							/*setGameboardState(x, y,
-									myColor == PieceColor.BLACK ? blackGridTile
-											: whiteGridTile);*/
 							x -= xDelta;
 							y -= yDelta;
 							this.blackScore += blackResult;
@@ -381,7 +373,6 @@ public class ReversiModel extends GameUtils {
 			cursoredTile = new CompositeTile(t, cursorRedTile);
 		}
 		gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = cursoredTile;
-		//setGameboardState(this.cursorPos, cursoredTile);
 	}
 
 }

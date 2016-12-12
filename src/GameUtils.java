@@ -31,13 +31,6 @@ public abstract class GameUtils implements GameModel  {
     public GameTile [][] getGameboard(){
         return null;
     }
-    /**
-     * Returns the size of the gameboard.
-     */
-    @Override
-    public Dimension getGameboardSize() {
-        return null;
-    }
 
     /**
      * This method is called repeatedly so that the game can update it's state.

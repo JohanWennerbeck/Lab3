@@ -226,8 +226,8 @@ public class GoldModel extends GameUtils {
 	 * @return <code>false</code> if the position is outside the playing field, <code>true</code> otherwise.
 	 */
 	private boolean isOutOfBounds(Position pos) {
-		return pos.getX() < 0 || pos.getX() >= getGameboardSize().width
-				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
+		return pos.getX() < 0 || pos.getX() >= gameboardSize.width
+				|| pos.getY() < 0 || pos.getY() >= gameboardSize.height;
 	}
 
 	public GameTile getGameboardState(final Position pos, GameTile[][] gameboardState){
@@ -236,9 +236,5 @@ public class GoldModel extends GameUtils {
 
 	public GameTile getGameboardState(int x, int y, GameTile[][] gameboardState){
 		return this.gameboardState[x][y];
-	}
-
-	public Dimension getGameboardSize(){
-		return this.gameboardSize;
 	}
 }
