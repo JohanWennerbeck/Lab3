@@ -56,7 +56,7 @@ public interface GameModel {
 	 * @param pos
 	 *            The position in the gameboard matrix.
 	 */
-	public GameTile getGameboardState(final Position pos);
+	public GameTile getGameboardState(final Position pos, GameTile[][] gameboardState);
 		//return getGameboardState(pos.getX(), pos.getY());
 
 
@@ -68,9 +68,10 @@ public interface GameModel {
 	 * @param y
 	 *            Coordinate in the gameboard matrix.
 	 */
-	public GameTile getGameboardState(final int x, final int y);
+	public GameTile getGameboardState(final int x, final int y, GameTile[][] gameboardState);
 		//return this.gameboardState[x][y];
 
+	public GameTile[][] getGameboard();
 
 	/**
 	 * Returns the size of the gameboard.

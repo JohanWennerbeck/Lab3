@@ -13,8 +13,8 @@ public abstract class GameUtils implements GameModel  {
      * @param tile
      */
 
-    public void setGameboardState(Position pos, GameTile tile) {
-
+    public static GameTile setGameboardState(Position pos, GameTile tile, GameTile[][] matt) {
+        return setGameboardState(pos.getX(), pos.getY(), tile, matt);
     }
 
     /**
@@ -24,9 +24,14 @@ public abstract class GameUtils implements GameModel  {
      * @param y    Coordinate in the gameboard matrix.
      * @param tile
      */
+<<<<<<< HEAD
     public void setGameboardState(int x, int y, GameTile[][] tile) {
         GameModel model = new ReversiModel();
 
+=======
+    public static GameTile setGameboardState(int x, int y, GameTile tile, GameTile[][] matt) {
+        return matt[x][y] = tile ;
+>>>>>>> 8f7f8c9bed57ae785b05858c1d8cce45bd324b4c
     }
 
     /**
@@ -35,8 +40,8 @@ public abstract class GameUtils implements GameModel  {
      * @param pos The position in the gameboard matrix.
      */
     @Override
-    public GameTile[][] getGameboardState(Position pos) {
-        return null;
+    public GameTile getGameboardState(Position pos, GameTile[][] gameboardState) {
+        return getGameboardState(pos.getX(), pos.getY(), gameboardState);
     }
 
     /**
@@ -46,10 +51,18 @@ public abstract class GameUtils implements GameModel  {
      * @param y
      */
     @Override
+<<<<<<< HEAD
     public GameTile getGameboardState(int x, int y) {
 
+=======
+    public GameTile getGameboardState(int x, int y, GameTile [][] gameboardState) {
+        return gameboardState[x][y];
+>>>>>>> 8f7f8c9bed57ae785b05858c1d8cce45bd324b4c
     }
 
+    public GameTile [][] getGameboard(){
+        return null;
+    }
     /**
      * Returns the size of the gameboard.
      */
