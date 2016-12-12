@@ -25,6 +25,8 @@ public abstract class GameUtils implements GameModel  {
      * @param tile
      */
     public void setGameboardState(int x, int y, GameTile[][] tile) {
+        GameModel model = new ReversiModel();
+
     }
 
     /**
@@ -45,7 +47,7 @@ public abstract class GameUtils implements GameModel  {
      */
     @Override
     public GameTile getGameboardState(int x, int y) {
-        return null;
+
     }
 
     /**
