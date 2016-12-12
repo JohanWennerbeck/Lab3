@@ -9,7 +9,18 @@ import java.awt.event.KeyEvent;
  * @author evensen
  * 
  */
-public class ReversiModel extends GameModel {
+public class ReversiModel extends GameUtils {
+
+	private final Dimension gameboardSize = Constants.getGameSize();
+
+	private final GameTile[][] gameboardState = new GameTile[gameboardSize.height][gameboardSize.width];
+
+
+	public GameTile[][] getGameboard() {
+		return gameboardState;
+	}
+
+
 	public enum Direction {
 			EAST(1, 0),
 			SOUTHEAST(1, 1),
@@ -91,7 +102,7 @@ public class ReversiModel extends GameModel {
 		// Blank out the whole gameboard...
 		for (int i = 0; i < this.width; i++) {
 			for (int j = 0; j < this.height; j++) {
-				setGameboardState(i, j, blankTile);
+				gameboardState [i][j] = blankTile;
 				this.board[i][j] = PieceColor.EMPTY;
 			}
 		}
@@ -102,13 +113,17 @@ public class ReversiModel extends GameModel {
 		int midX = this.width / 2 - 1;
 		int midY = this.height / 2 - 1;
 		this.board[midX][midY] = PieceColor.WHITE;
-		setGameboardState(midX, midY, whiteGridTile);
+		gameboardState[midX][midY] = whiteGridTile;
+		//setGameboardState(midX, midY, whiteGridTile);
 		this.board[midX + 1][midY + 1] = PieceColor.WHITE;
-		setGameboardState(midX + 1, midY + 1, whiteGridTile);
+		gameboardState[midX+1][midY+1] = whiteGridTile;
+		//setGameboardState(midX + 1, midY + 1, whiteGridTile);
 		this.board[midX + 1][midY] = PieceColor.BLACK;
-		setGameboardState(midX + 1, midY, blackGridTile);
+		gameboardState[midX+1][midY] = blackGridTile;
+		//setGameboardState(midX + 1, midY, blackGridTile);
 		this.board[midX][midY + 1] = PieceColor.BLACK;
-		setGameboardState(midX, midY + 1, blackGridTile);
+		gameboardState[midX][midY+1] = blackGridTile;
+		//setGameboardState(midX, midY + 1, blackGridTile);
 
 		// Set the initial score.
 		this.whiteScore = 2;
@@ -168,7 +183,8 @@ public class ReversiModel extends GameModel {
 			}
 			if (canTurn(this.turn, this.cursorPos)) {
 				turnOver(this.turn, this.cursorPos);
-				setGameboardState(this.cursorPos, t);
+				gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = t;
+				//setGameboardState(this.cursorPos, t);
 				this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
 						(this.turn == Turn.BLACK
 								? PieceColor.BLACK
@@ -217,9 +233,11 @@ public class ReversiModel extends GameModel {
 						y -= yDelta;
 						while (!(x == cursorPos.getX() && y == cursorPos.getY())) {
 							this.board[x][y] = myColor;
-							setGameboardState(x, y,
+							gameboardState[x][y] = (myColor == PieceColor.BLACK ? blackGridTile
+									: whiteGridTile);
+							/*setGameboardState(x, y,
 									myColor == PieceColor.BLACK ? blackGridTile
-											: whiteGridTile);
+											: whiteGridTile);*/
 							x -= xDelta;
 							y -= yDelta;
 							this.blackScore += blackResult;
@@ -320,14 +338,13 @@ public class ReversiModel extends GameModel {
 	public void gameUpdate(final int lastKey) throws GameOverException {
 		if (!this.gameOver) {
 			Position nextCursorPos = getNextCursorPos(updateDirection(lastKey));
-			Dimension boardSize = getGameboardSize();
 			int nextX =
 					Math.max(0,
-							Math.min(nextCursorPos.getX(), boardSize.width - 1));
+							Math.min(nextCursorPos.getX(), gameboardSize.width - 1));
 			int nextY =
 					Math.max(
 							0,
-							Math.min(nextCursorPos.getY(), boardSize.height - 1));
+							Math.min(nextCursorPos.getY(), gameboardSize.height - 1));
 			nextCursorPos = new Position(nextX, nextY);
 			removeCursor(this.cursorPos);
 			this.cursorPos = nextCursorPos;
@@ -338,20 +355,21 @@ public class ReversiModel extends GameModel {
 	}
 
 	private void removeCursor(final Position oldCursorPos) {
-		GameTile t = getGameboardState(this.cursorPos);
+		GameTile t = getGameboardState(this.cursorPos, gameboardState);
 		if (t instanceof CompositeTile) {
 			CompositeTile c = (CompositeTile) t;
 			// Remove the top layer, if it is the cursor.
 			if (c.getTop() == cursorRedTile ||
 					c.getTop() == cursorWhiteTile ||
 					c.getTop() == cursorBlackTile) {
-				setGameboardState(oldCursorPos, c.getBottom());
+				gameboardState[oldCursorPos.getX()][oldCursorPos.getY()] = c.getBottom();
+				//setGameboardState(oldCursorPos, c.getBottom());
 			}
 		}
 	}
 
 	private void updateCursor() {
-		GameTile t = getGameboardState(this.cursorPos);
+		GameTile t = getGameboardState(this.cursorPos, gameboardState);
 		GameTile cursoredTile;
 		if (canTurn(this.turn, this.cursorPos)) {
 			if (this.turn == Turn.BLACK) {
@@ -362,7 +380,8 @@ public class ReversiModel extends GameModel {
 		} else {
 			cursoredTile = new CompositeTile(t, cursorRedTile);
 		}
-		setGameboardState(this.cursorPos, cursoredTile);
+		gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = cursoredTile;
+		//setGameboardState(this.cursorPos, cursoredTile);
 	}
 
 }

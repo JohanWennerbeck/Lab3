@@ -13,8 +13,8 @@ public abstract class GameUtils implements GameModel  {
      * @param tile
      */
 
-    public void setGameboardState(Position pos, GameTile tile) {
-
+    public static GameTile setGameboardState(Position pos, GameTile tile, GameTile[][] matt) {
+        return setGameboardState(pos.getX(), pos.getY(), tile, matt);
     }
 
     /**
@@ -24,8 +24,8 @@ public abstract class GameUtils implements GameModel  {
      * @param y    Coordinate in the gameboard matrix.
      * @param tile
      */
-    public void setGameboardState(int x, int y, GameTile tile) {
-
+    public static GameTile setGameboardState(int x, int y, GameTile tile, GameTile[][] matt) {
+        return matt[x][y] = tile ;
     }
 
     /**
@@ -34,8 +34,8 @@ public abstract class GameUtils implements GameModel  {
      * @param pos The position in the gameboard matrix.
      */
     @Override
-    public GameTile getGameboardState(Position pos) {
-        return null;
+    public GameTile getGameboardState(Position pos, GameTile[][] gameboardState) {
+        return getGameboardState(pos.getX(), pos.getY(), gameboardState);
     }
 
     /**
@@ -45,10 +45,13 @@ public abstract class GameUtils implements GameModel  {
      * @param y
      */
     @Override
-    public GameTile getGameboardState(int x, int y) {
-        return null;
+    public GameTile getGameboardState(int x, int y, GameTile [][] gameboardState) {
+        return gameboardState[x][y];
     }
 
+    public GameTile [][] getGameboard(){
+        return null;
+    }
     /**
      * Returns the size of the gameboard.
      */
