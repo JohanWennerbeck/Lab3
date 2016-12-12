@@ -73,7 +73,7 @@ public class GoldModel extends GameUtils {
 			Color.RED, 2.0);
 
 	/** Graphical representation of a blank tile. */
-	private static final GameTile BLANK_TILE = new GameTile();
+	private static final GameTile BLANK_TILE = new BlankTile();
 
 	/** A list containing the positions of all coins. */
 	private final List<Position> coins = new ArrayList<Position>();
@@ -142,7 +142,7 @@ public class GoldModel extends GameUtils {
 	 * @return true if position is empty.
 	 */
 	private boolean isPositionEmpty(final Position pos) {
-		return (getGameboardState(pos) == BLANK_TILE);
+		return (getGameboardState(pos, gameboardState) == BLANK_TILE);
 	}
 
 	/**
@@ -230,11 +230,11 @@ public class GoldModel extends GameUtils {
 				|| pos.getY() < 0 || pos.getY() >= getGameboardSize().height;
 	}
 
-	public GameTile getGameboardState(final Position pos){
-		return getGameboardState(pos.getX(), pos.getY());
+	public GameTile getGameboardState(final Position pos, GameTile[][] gameboardState){
+		return getGameboardState(pos.getX(), pos.getY(), gameboardState);
 	}
 
-	public GameTile getGameboardState(int x, int y){
+	public GameTile getGameboardState(int x, int y, GameTile[][] gameboardState){
 		return this.gameboardState[x][y];
 	}
 
