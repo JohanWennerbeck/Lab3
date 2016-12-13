@@ -94,7 +94,7 @@ public class GameView extends JComponent {
 			// Draw all tiles by going over them x-wise and y-wise.
 			for (int i = 0; i < this.modelSize.width; i++) {
 				for (int j = 0; j < this.modelSize.height; j++) {
-					GameTile tile = this.model.getGameboardState(i, j, this.model.getGameboard());
+					GameTile tile = this.model.getGameboardState(i, j);
 					tile.draw(g, i * this.tileSize.width, j
 							* this.tileSize.height,
 							this.tileSize);

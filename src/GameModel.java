@@ -15,7 +15,7 @@ public interface GameModel {
 	 * @param pos
 	 *            The position in the gameboard matrix.
 	 */
-	public GameTile getGameboardState(final Position pos, GameTile[][] gameboardState);
+	public GameTile getGameboardState(final Position pos);
 
 
 
@@ -27,7 +27,7 @@ public interface GameModel {
 	 * @param y
 	 *            Coordinate in the gameboard matrix.
 	 */
-	public GameTile getGameboardState(final int x, final int y, GameTile[][] gameboardState);
+	public GameTile getGameboardState(final int x, final int y);
 
 	public Dimension getGameboardSize();
 
