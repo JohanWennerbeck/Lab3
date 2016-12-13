@@ -98,7 +98,7 @@ public class ReversiModel implements GameModel {
         // Blank out the whole gameboard...
         for (int i = 0; i < this.width; i++) {
             for (int j = 0; j < this.height; j++) {
-                gameUtils.setGameboardState(i, j, blankTile, this.gameboardState);
+               // gameUtils.setGameboardState(i, j, blankTile, this.gameboardState);
                 // gameboardState [i][j] = blankTile;
                 this.board[i][j] = PieceColor.EMPTY;
             }
@@ -110,16 +110,16 @@ public class ReversiModel implements GameModel {
         int midX = this.width / 2 - 1;
         int midY = this.height / 2 - 1;
         this.board[midX][midY] = PieceColor.WHITE;
-        gameUtils.setGameboardState(midX, midY, whiteGridTile, this.gameboardState);
+        //gameUtils.setGameboardState(midX, midY, whiteGridTile, this.gameboardState);
         //	gameboardState[midX][midY] = whiteGridTile;
         this.board[midX + 1][midY + 1] = PieceColor.WHITE;
-        gameUtils.setGameboardState(midX + 1, midY + 1, whiteGridTile, this.gameboardState);
+       // gameUtils.setGameboardState(midX + 1, midY + 1, whiteGridTile, this.gameboardState);
         //gameboardState[midX+1][midY+1] = whiteGridTile;
         this.board[midX + 1][midY] = PieceColor.BLACK;
-        gameUtils.setGameboardState(midX + 1, midY, blackGridTile, this.gameboardState);
+        //gameUtils.setGameboardState(midX + 1, midY, blackGridTile, this.gameboardState);
         //gameboardState[midX+1][midY] = blackGridTile;
         this.board[midX][midY + 1] = PieceColor.BLACK;
-        gameUtils.setGameboardState(midX, midY + 1, blackGridTile, getGameboardState());
+        //gameUtils.setGameboardState(midX, midY + 1, blackGridTile, getGameboardState());
         //gameboardState[midX][midY+1] = blackGridTile;
 
         // Set the initial score.
@@ -179,7 +179,7 @@ public class ReversiModel implements GameModel {
             }
             if (canTurn(this.turn, this.cursorPos)) {
                 turnOver(this.turn, this.cursorPos);
-                gameUtils.setGameboardState(this.cursorPos, t, gameboardState);
+                //gameUtils.setGameboardState(this.cursorPos, t, gameboardState);
                 //gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = t;
                 this.board[this.cursorPos.getX()][this.cursorPos.getY()] =
                         (this.turn == Turn.BLACK
@@ -229,8 +229,8 @@ public class ReversiModel implements GameModel {
                         y -= yDelta;
                         while (!(x == cursorPos.getX() && y == cursorPos.getY())) {
                             this.board[x][y] = myColor;
-                            gameUtils.setGameboardState(x, y, (myColor == PieceColor.BLACK ? blackGridTile
-                                    : whiteGridTile), gameboardState);
+                            //gameUtils.setGameboardState(x, y, (myColor == PieceColor.BLACK ? blackGridTile
+                              //      : whiteGridTile), gameboardState);
                             //gameboardState[x][y] = (myColor == PieceColor.BLACK ? blackGridTile
                             //: whiteGridTile);
                             x -= xDelta;
@@ -423,7 +423,7 @@ public class ReversiModel implements GameModel {
                     c.getTop() == cursorWhiteTile ||
                     c.getTop() == cursorBlackTile) {
                 //gameboardState[oldCursorPos.getX()][oldCursorPos.getY()] = c.getBottom();
-                gameUtils.setGameboardState(oldCursorPos, c.getBottom(), getGameboardState());
+               // gameUtils.setGameboardState(oldCursorPos, c.getBottom(), getGameboardState());
             }
         }
     }
@@ -441,7 +441,7 @@ public class ReversiModel implements GameModel {
         } else {
             cursoredTile = new CompositeTile(t, cursorRedTile);
         }
-        gameUtils.setGameboardState(this.cursorPos, cursoredTile, gameboardState);
+       // gameUtils.setGameboardState(this.cursorPos, cursoredTile, gameboardState);
         //gameboardState[this.cursorPos.getX()][this.cursorPos.getY()] = cursoredTile;
     }
 
