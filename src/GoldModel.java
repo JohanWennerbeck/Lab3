@@ -20,15 +20,11 @@ import java.util.List;
 
 public class GoldModel implements GameModel {
 
-	private final Dimension gameboardSize = Constants.getGameSize();
+	private final Dimension gameboardSize = getGameboardSize();
 
 	private GameUtils gameUtils = new GameUtils();
 
 	private final GameTile[][] gameboardState = new GameTile[gameboardSize.height][gameboardSize.width];
-
-	public GameTile[][] getGameboard() {
-		return gameboardState;
-	}
 
 	public enum Directions {
 		EAST(1, 0),
@@ -188,7 +184,6 @@ public class GoldModel implements GameModel {
 	 * Returns the GameTile in logical position (x,y) of the gameboard.
 	 *
 	 * @param pos            The position in the gameboard matrix.
-	 * @param gameboardState
 	 */
 	@Override
 	public GameTile getGameboardState(Position pos) {
@@ -200,7 +195,6 @@ public class GoldModel implements GameModel {
 	 *
 	 * @param x              Coordinate in the gameboard matrix.
 	 * @param y
-	 * @param gameboardState
 	 */
 	@Override
 	public GameTile getGameboardState(int x, int y) {
@@ -209,7 +203,7 @@ public class GoldModel implements GameModel {
 
 	@Override
 	public Dimension getGameboardSize() {
-		return null;
+		return Constants.getGameSize();
 	}
 
 	/**
