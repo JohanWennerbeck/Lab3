@@ -18,7 +18,7 @@ import java.util.List;
 
 
 
-public class GoldModel extends GameUtils {
+public class GoldModel implements GameModel {
 
 	private final Dimension gameboardSize = Constants.getGameSize();
 
@@ -142,7 +142,7 @@ public class GoldModel extends GameUtils {
 	 * @return true if position is empty.
 	 */
 	private boolean isPositionEmpty(final Position pos) {
-		return (getGameboardState(pos, gameboardState) == BLANK_TILE);
+		return ((gameboardState[pos.getX()][pos.getY()]) == BLANK_TILE);
 	}
 
 	/**
@@ -176,6 +176,34 @@ public class GoldModel extends GameUtils {
 		return new Position(
 				this.collectorPos.getX() + this.direction.getXDelta(),
 				this.collectorPos.getY() + this.direction.getYDelta());
+	}
+
+	/**
+	 * Returns the GameTile in logical position (x,y) of the gameboard.
+	 *
+	 * @param pos            The position in the gameboard matrix.
+	 * @param gameboardState
+	 */
+	@Override
+	public GameTile getGameboardState(Position pos, GameTile[][] gameboardState) {
+		return null;
+	}
+
+	/**
+	 * Returns the GameTile in logical position (x,y) of the gameboard.
+	 *
+	 * @param x              Coordinate in the gameboard matrix.
+	 * @param y
+	 * @param gameboardState
+	 */
+	@Override
+	public GameTile getGameboardState(int x, int y, GameTile[][] gameboardState) {
+		return null;
+	}
+
+	@Override
+	public Dimension getGameboardSize() {
+		return null;
 	}
 
 	/**
@@ -229,12 +257,12 @@ public class GoldModel extends GameUtils {
 		return pos.getX() < 0 || pos.getX() >= gameboardSize.width
 				|| pos.getY() < 0 || pos.getY() >= gameboardSize.height;
 	}
-
+/*
 	public GameTile getGameboardState(final Position pos, GameTile[][] gameboardState){
 		return getGameboardState(pos.getX(), pos.getY(), gameboardState);
 	}
 
 	public GameTile getGameboardState(int x, int y, GameTile[][] gameboardState){
 		return this.gameboardState[x][y];
-	}
+	}*/
 }

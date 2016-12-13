@@ -29,7 +29,7 @@ public interface GameModel {
 	 */
 	public GameTile getGameboardState(final int x, final int y, GameTile[][] gameboardState);
 
-	public GameTile[][] getGameboard();
+	public Dimension getGameboardSize();
 
 	/**
 	 * This method is called repeatedly so that the game can update it's state.

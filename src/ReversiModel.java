@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
  * @author evensen
  * 
  */
-public class ReversiModel extends GameUtils {
+public class ReversiModel implements GameModel {
 
 	private final Dimension gameboardSize = Constants.getGameSize();
 
@@ -320,6 +320,34 @@ public class ReversiModel extends GameUtils {
 	}
 
 	/**
+	 * Returns the GameTile in logical position (x,y) of the gameboard.
+	 *
+	 * @param pos            The position in the gameboard matrix.
+	 * @param gameboardState
+	 */
+	@Override
+	public GameTile getGameboardState(Position pos, GameTile[][] gameboardState) {
+		return null;
+	}
+
+	/**
+	 * Returns the GameTile in logical position (x,y) of the gameboard.
+	 *
+	 * @param x              Coordinate in the gameboard matrix.
+	 * @param y
+	 * @param gameboardState
+	 */
+	@Override
+	public GameTile getGameboardState(int x, int y, GameTile[][] gameboardState) {
+		return null;
+	}
+
+	@Override
+	public Dimension getGameboardSize() {
+		return null;
+	}
+
+	/**
 	 * This method is called repeatedly so that the
 	 * game can update its state.
 	 * 
@@ -347,7 +375,7 @@ public class ReversiModel extends GameUtils {
 	}
 
 	private void removeCursor(final Position oldCursorPos) {
-		GameTile t = getGameboardState(this.cursorPos, gameboardState);
+		GameTile t = gameboardState[this.cursorPos.getX()][this.cursorPos.getY()];
 		if (t instanceof CompositeTile) {
 			CompositeTile c = (CompositeTile) t;
 			// Remove the top layer, if it is the cursor.
@@ -361,7 +389,7 @@ public class ReversiModel extends GameUtils {
 	}
 
 	private void updateCursor() {
-		GameTile t = getGameboardState(this.cursorPos, gameboardState);
+		GameTile t = gameboardState[this.cursorPos.getX()][this.cursorPos.getY()];
 		GameTile cursoredTile;
 		if (canTurn(this.turn, this.cursorPos)) {
 			if (this.turn == Turn.BLACK) {
