@@ -11,7 +11,7 @@ import java.awt.Graphics;
  * it is told what size and position that
  * should be used to paint it.
  */
-public class RectangularTile extends BlankTile {
+public class RectangularTile implements GameTile {
 
 	/** The color of the rectangle */
 	private final Color color;

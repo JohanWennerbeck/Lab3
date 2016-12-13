@@ -7,7 +7,7 @@ import java.awt.Graphics;
  * Whenever the object paints itself, the bottom tile is painted first,
  * then the top tile is painted on top.
  */
-public class CompositeTile extends BlankTile {
+public class CompositeTile implements GameTile {
 	private final GameTile bottomTile;
 	private final GameTile topTile;
 
