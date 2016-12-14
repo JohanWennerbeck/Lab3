@@ -49,6 +49,7 @@ public class GameView extends JComponent implements PropertyChangeListener {
 				new Dimension(this.modelSize.width * tileSide,
 						this.modelSize.height * tileSide);
 		setPreferredSize(preferredSize);
+
 	}
 
 	/**
@@ -56,6 +57,8 @@ public class GameView extends JComponent implements PropertyChangeListener {
 	 */
 	public void setModel(final GameModel model) {
 		this.model = model;
+		if(this.model != null){
+		this.model.addObserver(this);}
 		repaint();
 	}
 
@@ -75,7 +78,7 @@ public class GameView extends JComponent implements PropertyChangeListener {
 
 		// This will invoke painting correctly on the offscreen buffer
 		super.update(this.offscreenGraphics);
-		
+
 
 		// Draw the contents of the offscreen buffer to screen.
 		g.drawImage(this.offscreenImage, 0, 0, this);
@@ -114,5 +117,6 @@ public class GameView extends JComponent implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		repaint();
+		
 	}
 }

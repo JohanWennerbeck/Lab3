@@ -149,6 +149,7 @@ public class GameController implements Runnable {
 				// or 0 if no new keypress since last update.
 				this.gameModel.gameUpdate(nextKeyPress());
 
+
 				Thread.sleep(this.updateInterval);
 			} catch (GameOverException e) {
 				// we got a game over signal, time to exit...
