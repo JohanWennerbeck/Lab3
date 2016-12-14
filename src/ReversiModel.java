@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * A somewhat defective implementation of the game Reversi. The purpose
@@ -10,9 +12,20 @@ import java.awt.event.KeyEvent;
  */
 public class ReversiModel implements GameModel {
 
-    private final GameUtils gameUtils = new GameUtils();
 
     private final Dimension gameboardSize = getGameboardSize();
+
+    private PropertyChangeSupport propertyChangeSupport;
+
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+        propertyChangeSupport.addPropertyChangeListener(observer);
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
+        propertyChangeSupport.removePropertyChangeListener(observer);
+    }
 
 
     public enum Direction {
@@ -94,6 +107,7 @@ public class ReversiModel implements GameModel {
         this.width = Constants.getGameSize().width;
         this.height = Constants.getGameSize().height;
         this.board = new PieceColor[this.width][this.height];
+        this.propertyChangeSupport = new PropertyChangeSupport(this);
 
         // Blank out the whole gameboard...
         for (int i = 0; i < this.width; i++) {
@@ -408,6 +422,8 @@ public class ReversiModel implements GameModel {
             removeCursor(this.cursorPos);
             this.cursorPos = nextCursorPos;
             updateCursor();
+            propertyChangeSupport.firePropertyChange("Game Update", true, false);
+
         } else {
             throw new GameOverException(this.blackScore - this.whiteScore);
         }
@@ -430,6 +446,7 @@ public class ReversiModel implements GameModel {
 
     private void updateCursor() {
         GameTile t = getGameboardState(this.cursorPos);
+        propertyChangeSupport.firePropertyChange("Game Update", false, true);
         //GameTile t = gameboardState[this.cursorPos.getX()][this.cursorPos.getY()];
         GameTile cursoredTile;
         if (canTurn(this.turn, this.cursorPos)) {

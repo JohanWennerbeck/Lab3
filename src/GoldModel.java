@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,11 +24,23 @@ public class GoldModel implements GameModel {
 
 	private final Dimension gameboardSize = getGameboardSize();
 
+	private PropertyChangeSupport propertyChangeSupport;
+
 	private GameUtils gameUtils = new GameUtils();
 
 	private final GameTile[][] gameboardState = new GameTile[gameboardSize.height][gameboardSize.width];
 
-	public enum Directions {
+    @Override
+    public void addObserver(PropertyChangeListener observer) {
+        propertyChangeSupport.addPropertyChangeListener(observer);
+    }
+
+    @Override
+    public void removeObserver(PropertyChangeListener observer) {
+        propertyChangeSupport.removePropertyChangeListener(observer);
+    }
+
+    public enum Directions {
 		EAST(1, 0),
 		WEST(-1, 0),
 		NORTH(0, -1),
@@ -106,6 +120,7 @@ public class GoldModel implements GameModel {
 			    //gameboardState[i][j] = BLANK_TILE;
 			}
 		}
+		 propertyChangeSupport = new PropertyChangeSupport(this);
 
 		// Insert the collector in the middle of the gameboard.
 		this.collectorPos = new Position(gameboardSize.width / 2, gameboardSize.height / 2);
@@ -248,6 +263,7 @@ public class GoldModel implements GameModel {
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
+		propertyChangeSupport.firePropertyChange("Game Update", true, false);
 
 	}
 

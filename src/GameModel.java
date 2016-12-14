@@ -1,3 +1,5 @@
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.awt.Dimension;
 
 /**
@@ -6,7 +8,7 @@ import java.awt.Dimension;
  * Constructors of subclasses should initiate matrix elements and additional,
  * game-dependent fields.
  */
-public interface GameModel {
+public interface GameModel extends IObesrvable {
 
 
 	/**
