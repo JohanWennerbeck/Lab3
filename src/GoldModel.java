@@ -26,6 +26,8 @@ public class GoldModel implements GameModel {
 
 	private PropertyChangeSupport propertyChangeSupport;
 
+	private final int updateSpeed = 150;
+
 	private GameUtils gameUtils = new GameUtils();
 
 	private final GameTile[][] gameboardState = new GameTile[gameboardSize.height][gameboardSize.width];
@@ -126,7 +128,6 @@ public class GoldModel implements GameModel {
 		this.collectorPos = new Position(gameboardSize.width / 2, gameboardSize.height / 2);
 
         gameUtils.setGameboardState(this.collectorPos.getX(),this.collectorPos.getY(),COLLECTOR_TILE,gameboardState);
-        //gameboardState[this.collectorPos.getX()][this.collectorPos.getY()] = COLLECTOR_TILE;
 
 		// Insert coins into the gameboard.
 		for (int i = 0; i < COIN_START_AMOUNT; i++) {
@@ -221,7 +222,12 @@ public class GoldModel implements GameModel {
 		return Constants.getGameSize();
 	}
 
-	/**
+    @Override
+    public int getUpdateSpeed() {
+        return this.updateSpeed;
+    }
+
+    /**
 	 * This method is called repeatedly so that the
 	 * game can update its state.
 	 * 

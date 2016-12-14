@@ -15,7 +15,7 @@ public class ReversiModel implements GameModel {
 
     private final Dimension gameboardSize = getGameboardSize();
 
-    //GameView view = new GameView();
+    private final int updateSpeed = 150;
 
     private PropertyChangeSupport propertyChangeSupport;
 
@@ -387,6 +387,11 @@ public class ReversiModel implements GameModel {
 
     private boolean isCursorOnPos(Position pos) {
         return this.cursorPos.equals(pos);
+    }
+
+    @Override
+    public int getUpdateSpeed() {
+        return updateSpeed;
     }
 
     @Override

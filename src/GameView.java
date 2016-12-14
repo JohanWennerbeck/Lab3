@@ -117,6 +117,6 @@ public class GameView extends JComponent implements PropertyChangeListener {
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		repaint();
-		
+
 	}
 }

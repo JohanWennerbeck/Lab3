@@ -33,6 +33,7 @@ public interface GameModel extends IObesrvable {
 
 	public Dimension getGameboardSize();
 
+	public int getUpdateSpeed();
 	/**
 	 * This method is called repeatedly so that the game can update it's state.
 	 * 
