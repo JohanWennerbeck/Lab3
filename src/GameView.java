@@ -116,8 +116,8 @@ public class GameView extends JComponent implements PropertyChangeListener {
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		repaint();
-		System.out.println("Tjena ");
-
+		if(evt.getPropertyName().equals("Game Update")) {
+			repaint();
+		}
 	}
 }
