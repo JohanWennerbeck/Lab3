@@ -236,7 +236,8 @@ public class GoldModel implements GameModel {
 	 */
 	@Override
 	public void gameUpdate(final int lastKey) throws GameOverException {
-		updateDirection(lastKey);
+        System.out.println("Gold update");
+        updateDirection(lastKey);
 
 		// Erase the previous position.
         gameUtils.setGameboardState(this.collectorPos.getX(),this.collectorPos.getY(),BLANK_TILE,gameboardState);
