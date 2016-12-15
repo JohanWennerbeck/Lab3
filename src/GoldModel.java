@@ -269,7 +269,6 @@ public class GoldModel implements GameModel {
 
 		// Add a new coin (simulating moving one coin)
 		addCoin();
-		addObserver(new GameView());
 		propertyChangeSupport.firePropertyChange("Game Update", true, false);
 
 	}

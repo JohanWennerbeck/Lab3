@@ -15,7 +15,7 @@ public class ReversiModel implements GameModel {
 
     private final Dimension gameboardSize = getGameboardSize();
 
-    private final int updateSpeed = 150;
+    private final int updateSpeed = 0;
 
     private PropertyChangeSupport propertyChangeSupport;
 
